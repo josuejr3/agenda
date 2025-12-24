@@ -133,3 +133,7 @@ STATIC_ROOT = BASE_DIR / "static_global"  # É uma pasta que faz o collectstatic
 MEDIA_URL = "media/"                      # Cria a pasta de arquivos enviados pelos users
 MEDIA_ROOT = BASE_DIR / "media"
 
+try:
+    from agenda.local_settings import *
+except ImportError:
+    ...
