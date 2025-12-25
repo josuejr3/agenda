@@ -23,4 +23,7 @@ app_name = 'contact'
 urlpatterns = [
     # Na página raiz do site ele vai chamar a view index "resposta"
     path("", views.index, name="index"),
+    # O parâmetro da request é obtido pelo primeiro argumento da path
+    path("<int:contact_id>/", views.contact, name="contact"),
+
 ]
