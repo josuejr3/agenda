@@ -5,7 +5,11 @@ from contact.models import Contact
 
 def index(request):
 
-    contacts = Contact.objects.all()
+    # normalmente não usamos o all
+    contacts = Contact.objects.all().order_by('-id').filter(show=True)[0:10]
+    # filter faz o filtro do que vai ser selecionado
+    # Vendo a consulta que está sendo feita no terminal
+    # print(contacts.query)
 
     context = {
         'contacts': contacts,
@@ -16,3 +20,4 @@ def index(request):
         'contact/index.html',
         context
     )
+
