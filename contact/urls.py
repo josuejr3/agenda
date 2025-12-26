@@ -26,7 +26,7 @@ urlpatterns = [
     # O parâmetro da request é obtido pelo primeiro argumento da path - READ
     path("contact/<int:contact_id>/detail/", views.contact, name="contact"),
     # CREATE
-    # path("contact/create/", views.contact, name="contact"),
+    path("contact/create/", views.create, name="create"),
     # DELETE
     # path("contact/<int:contact_id>/delete>", views.contact, name="contact"),
     # UPDATE
