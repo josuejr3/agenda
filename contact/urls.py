@@ -25,5 +25,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     # O parâmetro da request é obtido pelo primeiro argumento da path
     path("<int:contact_id>/", views.contact, name="contact"),
+    path("search/", views.search, name="search"),
 
 ]

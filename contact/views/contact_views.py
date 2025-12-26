@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from contact.models import Contact
 from django.http import Http404
+from django.db.models import Q
 
 # Create your views here.
 
@@ -15,6 +16,34 @@ def index(request):
     context = {
         'contacts': contacts,
         'site_tile': "Contatos - "
+    }
+
+    return render(
+        request,
+        'contact/index.html',
+        context
+    )
+
+def search(request):
+
+    search_value = request.GET.get('query', '').strip()
+    print(search_value)
+
+    # Se for uma consulta inválida ele volta pra index
+    if search_value == '':
+        return redirect('contact:index')
+
+    # consultas em que é feito o uso da "," e dos parâmetros é basicamente um AND
+    contacts = Contact.objects.filter(show=True).filter(
+        Q(first_name__icontains=search_value) |
+        Q(last_name__icontains=search_value)
+    ).order_by('-id')
+
+    print(contacts.query)
+
+    context = {
+        'contacts': contacts,
+        'site_tile': "Search - "
     }
 
     return render(
