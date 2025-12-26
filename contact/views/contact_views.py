@@ -2,19 +2,25 @@ from django.shortcuts import render, get_object_or_404, redirect
 from contact.models import Contact
 from django.http import Http404
 from django.db.models import Q
+from django.core.paginator import Paginator
 
 # Create your views here.
 
 def index(request):
 
     # normalmente não usamos o all
-    contacts = Contact.objects.all().order_by('-id').filter(show=True)[0:10]
+    contacts = Contact.objects.all().order_by('-id').filter(show=True)
     # filter faz o filtro do que vai ser selecionado
     # Vendo a consulta que está sendo feita no terminal
     # print(contacts.query)
 
+    # Paginação
+    paginator = Paginator(contacts, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number) # O cojunto dos dez contatos
+
     context = {
-        'contacts': contacts,
+        'page_obj': page_obj,
         'site_tile': "Contatos - "
     }
 
@@ -39,10 +45,15 @@ def search(request):
         Q(last_name__icontains=search_value)
     ).order_by('-id')
 
-    print(contacts.query)
+    # print(contacts.query)
+
+    # Paginação
+    paginator = Paginator(contacts, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)  # O cojunto dos dez contatos
 
     context = {
-        'contacts': contacts,
+        'page_obj': page_obj,
         'site_tile': "Search - ",
         'search_value': search_value,
     }
