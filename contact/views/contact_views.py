@@ -43,7 +43,8 @@ def search(request):
 
     context = {
         'contacts': contacts,
-        'site_tile': "Search - "
+        'site_tile': "Search - ",
+        'search_value': search_value,
     }
 
     return render(
