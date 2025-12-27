@@ -19,7 +19,7 @@ def update(request, contact_id):
     if request.method == 'POST':
 
         # A instância informa que os dados ja estao salvos, o que estiver no POST é para atualizar
-        form = ContactForm(request.POST, instance=contact)
+        form = ContactForm(request.POST, request.FILES, instance=contact)
 
         context = {
             'form': form,
@@ -50,7 +50,7 @@ def create(request):
         # O que passamos para o get é o nome do input que queremos
         #print(request.POST.get('first_name'))
 
-        form = ContactForm(request.POST)
+        form = ContactForm(request.POST, request.FILES)
 
         context = {
             'form': form,

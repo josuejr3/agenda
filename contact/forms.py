@@ -33,12 +33,21 @@ class ContactForm(forms.ModelForm):
 
 
 
+    # Código para a inserção da imagem
+    picture = forms.ImageField(
+        widget=forms.FileInput(
+            attrs={
+                'accept': 'image/*',
+            }
+        )
+    )
 
     class Meta:
         model = models.Contact
         fields = (
             'first_name', 'last_name', 'phone_number',
             'email', 'description', 'category',
+            'picture'
         )
 
         # Altera o tipo da entrada de texto para password, poderia ser um TextArea também
