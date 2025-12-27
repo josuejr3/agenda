@@ -30,7 +30,7 @@ urlpatterns = [
     # DELETE
     # path("contact/<int:contact_id>/delete>", views.contact, name="contact"),
     # UPDATE
-    # path("contact/<int:contact_id>/update>", views.contact, name="contact"),
+    path("contact/<int:contact_id>/update/", views.update, name="update"),
     path("search/", views.search, name="search"),
 
 
