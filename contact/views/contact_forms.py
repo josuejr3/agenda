@@ -13,7 +13,16 @@ def create(request):
     if request.method == 'POST':
         # O que passamos para o get é o nome do input que queremos
         #print(request.POST.get('first_name'))
-        context = {'form': ContactForm(request.POST)}
+
+        form = ContactForm(request.POST)
+
+        context = {'form': form}
+
+        # Só retorna true se o form não tiver NENHUM erro
+        if form.is_valid():
+            form.save()
+            return redirect('contact:create')
+
         return render(request, 'contact/create.html', context)
 
     context = {'form': ContactForm()}
