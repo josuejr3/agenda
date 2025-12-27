@@ -37,7 +37,8 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = models.Contact
         fields = (
-            'first_name', 'last_name', 'phone_number'
+            'first_name', 'last_name', 'phone_number',
+            'email', 'description', 'category',
         )
 
         # Altera o tipo da entrada de texto para password, poderia ser um TextArea também
