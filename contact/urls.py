@@ -28,7 +28,7 @@ urlpatterns = [
     # CREATE
     path("contact/create/", views.create, name="create"),
     # DELETE
-    # path("contact/<int:contact_id>/delete>", views.contact, name="contact"),
+    path("contact/<int:contact_id>/delete/", views.delete, name="delete"),
     # UPDATE
     path("contact/<int:contact_id>/update/", views.update, name="update"),
     path("search/", views.search, name="search"),
