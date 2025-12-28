@@ -34,4 +34,8 @@ urlpatterns = [
     path("search/", views.search, name="search"),
 
 
+    # URLs para Users
+    path('user/create/', views.register, name='register'),
+
+
 ]
